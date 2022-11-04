@@ -18,7 +18,7 @@ const test_cases = [
 	},
 	{
 		input: "17:20",
-		output: ["Maghrib","Sunset"],
+		output: "Maghrib",
 	},
 	{
 		input: "18:30",
@@ -45,11 +45,7 @@ describe('Next prayer`s time:', function () {
 	});
 	it('Current time `17:20` => Maghrib should be returned', async function () {
 		const data = await fetch_next_prayer_time(test_cases[3]['input']);
-		assert.ok(
-			data[0] === test_cases[3]['output'][0] 
-			||
-			data[0] === test_cases[3]['output'][1]
-		);
+		assert.ok( data[0] === test_cases[3]['output'] );
 	});
 	it('Current time `18:30` => Isha should be returned', async function () {
 		const data = await fetch_next_prayer_time(test_cases[4]['input']);
