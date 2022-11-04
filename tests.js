@@ -18,7 +18,7 @@ const test_cases = [
 	},
 	{
 		input: "17:20",
-		output: "Maghrib",
+		output: ["Maghrib","Sunset"],
 	},
 	{
 		input: "18:30",
@@ -31,26 +31,29 @@ describe('Next prayer`s time:', function () {
 	it('fetch_next_prayer_time returns Promise', function () {
 		assert.ok(fetch_next_prayer_time(test_cases[0]['input']) instanceof Promise)
 	});
-	it('Current time `23:00` => Fajr should be returned', function () {
-		fetch_next_prayer_time(test_cases[0]['input'])
-			.then(time => {assert.ok(test_cases[0]['output']===time[0]);})
+	it('Current time `23:00` => Fajr should be returned', async function () {
+		const data = await fetch_next_prayer_time(test_cases[0]['input']);
+		assert.ok(data[0] === test_cases[0]['output']);
 	});
-	it('Current time `09:00` => Dhuhr should be returned', function () {
-		fetch_next_prayer_time(test_cases[1]['input'])
-			.then(time => {assert.ok(test_cases[1]['output']===time[0]);})
+	it('Current time `09:00` => Dhuhr should be returned', async function () {
+		const data = await fetch_next_prayer_time(test_cases[1]['input']);
+		assert.ok(data[0] === test_cases[1]['output']);
 	});
-	it('Current time `14:00` => Asr should be returned', function () {
-		fetch_next_prayer_time(test_cases[2]['input'])
-			.then(time => {assert.ok(test_cases[2]['output']===time[0]);})
+	it('Current time `14:00` => Asr should be returned', async function () {
+		const data = await fetch_next_prayer_time(test_cases[2]['input']);
+		assert.ok(data[0] === test_cases[2]['output']);
 	});
-	it('Current time `17:20` => Maghrib should be returned', function () {
-		fetch_next_prayer_time(test_cases[3]['input'])
-			.then(time => {assert.ok(test_cases[3]['output']===time[0]);})
+	it('Current time `17:20` => Maghrib should be returned', async function () {
+		const data = await fetch_next_prayer_time(test_cases[3]['input']);
+		assert.ok(
+			data[0] === test_cases[3]['output'][0] 
+			||
+			data[0] === test_cases[3]['output'][1]
+		);
 	});
-	it('Current time `18:30` => Isha should be returned', function () {
-		fetch_next_prayer_time(test_cases[4]['input'])
-			.then(time => {
-				assert.ok(test_cases[4]['output']===time[0]);})
+	it('Current time `18:30` => Isha should be returned', async function () {
+		const data = await fetch_next_prayer_time(test_cases[4]['input']);
+		assert.ok(data[0] === test_cases[4]['output']);
 	});
 });
 
