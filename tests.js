@@ -1,7 +1,7 @@
 #!/usr/bin/env mocha
 
 const assert = require('assert');
-const {fetch_next_prayer_time} = require("./node.js");
+const {fetch_next_prayer_time} = require("./index.js");
 
 const test_cases = [
 	{
