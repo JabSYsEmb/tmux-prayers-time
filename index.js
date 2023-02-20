@@ -18,7 +18,7 @@ const get_next_time = (timings, current_time) => {
 		return timings[0];
 }
 
-const url_builder = (city="Istanbul", country="Turkey", method=12) => {
+const url_builder = (city="Istanbul", country="Turkey", method=3) => {
 	return `http://api.aladhan.com/v1/timingsByCity?city=${city}&country=${country}&method=${method}`
 }
 
